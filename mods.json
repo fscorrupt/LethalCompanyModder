@@ -15,10 +15,21 @@
       "Coroner",
       "MoreBlood",
       "Touchscreen",
+      "ScrapCalculator",
       "AlwaysHearActiveWalkies"
     ]
   },
   "Mods": [
+    {
+      "Name": "ScrapCalculator",
+      "DisplayName": "ScrapCalculator",
+      "Description": "Highlights bare minimum scrap required to complete quota.",
+      "Provider": "Thunderstore",
+      "Namespace": "granny",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "Touchscreen",
       "DisplayName": "Touchscreen",
