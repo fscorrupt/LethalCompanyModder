@@ -15,10 +15,21 @@
       "Coroner",
       "MoreBlood",
       "LC_DOOM",
+      "Touchscreen",
       "AlwaysHearActiveWalkies"
     ]
   },
   "Mods": [
+    {
+      "Name": "Touchscreen",
+      "DisplayName": "Touchscreen",
+      "Description": "Allows players to interact with the ship monitor.",
+      "Provider": "Thunderstore",
+      "Namespace": "TheDeadSnake",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "Helmet_Cameras",
       "DisplayName": "HelmetCameras",
