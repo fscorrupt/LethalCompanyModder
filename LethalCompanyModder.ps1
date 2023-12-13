@@ -355,6 +355,7 @@ renderDistance = 25
 cameraFps = 30
 "@
     $content | Out-File  $ConfigPath
+    $fileContent = Get-Content $ConfigPath -Raw
 }
 
 # Use regular expressions to find and replace the values
