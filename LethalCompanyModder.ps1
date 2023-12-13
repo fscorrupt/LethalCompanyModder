@@ -287,7 +287,7 @@ $BepInEx.ConfigFile, $BepInEx.LogFile | ForEach-Object -Process {
 # Install Mods from Thunderstore
 $ThunderstoreMods = $Mods | Where-Object -Property "Provider" -EQ -Value "Thunderstore"
 foreach ($mod in $ThunderstoreMods) {
-    Write-Host ("Install {0} mod by {1}." -f $mod.DisplayName, $mod.Namespace)
+    Write-Host ("       Install {0} mod by {1}." -f $mod.DisplayName, $mod.Namespace)
     $FullName = "{0}/{1}" -f $mod.Namespace, $mod.Name
     $DownloadUrl = (Invoke-RestMethod -Uri "https://thunderstore.io/api/experimental/package/$FullName/")."latest"."download_url"
     if (-not $DownloadUrl) { Write-Error -Message "$FullName mod download URL was not found." }
@@ -344,7 +344,7 @@ $monitorResolution = [regex]::Match($updatedContent, '(?<=monitorResolution = )\
 $renderDistance = [regex]::Match($updatedContent, '(?<=renderDistance = )\d+').Value
 
 if ($monitorResolution -eq '4' -and $renderDistance -eq '25') {
-    Write-Host "Changes were successful. monitorResolution is now $monitorResolution and renderDistance is now $renderDistance." -ForegroundColor Cyan
+    Write-Host "        Changes were successful. monitorResolution is now $monitorResolution and renderDistance is now $renderDistance." -ForegroundColor Cyan
 }
 else {
     Write-Host "Changes were not successful." -ForegroundColor Red
