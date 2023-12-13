@@ -326,7 +326,7 @@ Write-Host "Installation of Lethal Company mods completed." -ForegroundColor Cya
 $ConfigFileName = "RickArg.lethalcompany.helmetcameras.cfg"
 $ConfigPath = $BepInEx.ConfigDirectory + "\" + $ConfigFileName
 
-Write-Host "Now lets modify the config file: $ConfigFileName"
+Write-Host "        Now lets modify the config file: $ConfigFileName"
 
 # Read the content of the file
 if (Test-Path $ConfigPath) {
@@ -373,7 +373,7 @@ $monitorResolution = [regex]::Match($updatedContent, '(?<=monitorResolution = )\
 $renderDistance = [regex]::Match($updatedContent, '(?<=renderDistance = )\d+').Value
 
 if ($monitorResolution -eq '4' -and $renderDistance -eq '25') {
-    Write-Host "        Changes were successful. monitorResolution is now $monitorResolution and renderDistance is now $renderDistance." -ForegroundColor Cyan
+    Write-Host "Changes were successful. monitorResolution is now $monitorResolution and renderDistance is now $renderDistance." -ForegroundColor Cyan
 }
 else {
     Write-Host "Changes were not successful." -ForegroundColor Red
