@@ -324,18 +324,19 @@ Write-Host "Installation of Lethal Company mods completed." -ForegroundColor Cya
 
 # Edit config file
 $ConfigFileName = "RickArg.lethalcompany.helmetcameras.cfg"
+$ConfigPath = $BepInEx.ConfigDirectory + "\" + $ConfigFileName
 
 Write-Host "Now lets modify the config file: $ConfigFileName"
 
 # Read the content of the file
-$fileContent = Get-Content $BepInEx.ConfigDirectory\$ConfigFileName  -Raw
+$fileContent = Get-Content $ConfigPath -Raw
 
 # Use regular expressions to find and replace the values
 $fileContent = $fileContent -replace '(?<=monitorResolution = )\d+', '4'
 $fileContent = $fileContent -replace '(?<=renderDistance = )\d+', '25'
 
 # Write the modified content back to the file
-$fileContent | Set-Content $BepInEx.ConfigDirectory\$ConfigFileName
+$fileContent | Set-Content $ConfigPath
 
 Write-Host "`r`nGet back to work with your crewmates! No more excuses for not meeting the Company's profit quotas...`r`n" -ForegroundColor Green
 #endregion ----
