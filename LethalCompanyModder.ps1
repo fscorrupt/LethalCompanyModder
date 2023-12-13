@@ -356,6 +356,7 @@ cameraFps = 30
 "@
     $content | Out-File  $ConfigPath -Force
     Start-Sleep 2
+    $content | Set-Content $ConfigPath
     $fileContent = Get-Content $ConfigPath -Raw
 }
 
