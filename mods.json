@@ -16,10 +16,21 @@
       "MoreBlood",
       "Touchscreen",
       "ScrapCalculator",
+      "CompatibilityChecker",
       "AlwaysHearActiveWalkies"
     ]
   },
   "Mods": [
+    {
+      "Name": "CompatibilityChecker",
+      "DisplayName": "CompatibilityChecker",
+      "Description": "Enhances your multiplayer experience by notifying you of the required mods when failing to join modded servers.",
+      "Provider": "Thunderstore",
+      "Namespace": "Ryokune",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "ScrapCalculator",
       "DisplayName": "ScrapCalculator",
