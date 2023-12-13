@@ -329,7 +329,33 @@ $ConfigPath = $BepInEx.ConfigDirectory + "\" + $ConfigFileName
 Write-Host "Now lets modify the config file: $ConfigFileName"
 
 # Read the content of the file
-$fileContent = Get-Content $ConfigPath -Raw
+if (Test-Path $ConfigPath) {
+    $fileContent = Get-Content $ConfigPath -Raw
+}
+Else {
+    $Content = @"
+## Settings file was created by plugin Helmet_Cameras v2.1.4
+## Plugin GUID: RickArg.lethalcompany.helmetcameras
+
+[MONITOR QUALITY]
+
+## Low FPS affection. High Quality mode. 0 - vanilla (48x48), 1 - vanilla+ (128x128), 2 - mid quality (256x256), 3 - high quality (512x512), 4 - Very High Quality (1024x1024)
+# Setting type: Int32
+# Default value: 0
+monitorResolution = 4
+
+## Low FPS affection. Render distance for helmet camera.
+# Setting type: Int32
+# Default value: 20
+renderDistance = 25
+
+## Very high FPS affection. FPS for helmet camera. To increase YOUR fps, you should low cameraFps value.
+# Setting type: Int32
+# Default value: 30
+cameraFps = 30
+"@
+    $content | Out-File  $ConfigPath
+}
 
 # Use regular expressions to find and replace the values
 $fileContent = $fileContent -replace '(?<=monitorResolution = )\d+', '4'
