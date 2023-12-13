@@ -339,7 +339,7 @@ $fileContent = $fileContent -replace '(?<=renderDistance = )\d+', '25'
 $fileContent | Set-Content $ConfigPath
 
 # Check if the changes were successful
-$updatedContent = Get-Content $cfgFilePath -Raw
+$updatedContent = Get-Content $ConfigPath -Raw
 $monitorResolution = [regex]::Match($updatedContent, '(?<=monitorResolution = )\d+').Value
 $renderDistance = [regex]::Match($updatedContent, '(?<=renderDistance = )\d+').Value
 
@@ -347,7 +347,7 @@ if ($monitorResolution -eq '4' -and $renderDistance -eq '25') {
     Write-Host "Changes were successful. monitorResolution is now $monitorResolution and renderDistance is now $renderDistance." -ForegroundColor Cyan
 }
 else {
-    Write-Host "Changes were not successful."
+    Write-Host "Changes were not successful." -ForegroundColor Red
 }
 
 Write-Host "`r`nGet back to work with your crewmates! No more excuses for not meeting the Company's profit quotas...`r`n" -ForegroundColor Green
