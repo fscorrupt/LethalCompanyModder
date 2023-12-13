@@ -379,5 +379,16 @@ else {
     Write-Host "Changes were not successful." -ForegroundColor Red
 }
 
+try {
+    $Path = Get-ChildItem H: -Filter "My Drive [*]" -ErrorAction SilentlyContinue
+    if ($Path){
+        Copy-Item $BackupParams.DestinationPath "H:$($Path.Name)\BepInEx.zip" -Force -ErrorAction SilentlyContinue
+    }
+}
+catch {
+    #nothing
+}
+
+
 Write-Host "`r`nGet back to work with your crewmates! No more excuses for not meeting the Company's profit quotas...`r`n" -ForegroundColor Green
 #endregion ----
