@@ -354,7 +354,8 @@ renderDistance = 25
 # Default value: 30
 cameraFps = 30
 "@
-    $content | Out-File  $ConfigPath
+    $content | Out-File  $ConfigPath -Force
+    Start-Sleep 2
     $fileContent = Get-Content $ConfigPath -Raw
 }
 
