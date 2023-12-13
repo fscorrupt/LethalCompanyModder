@@ -222,7 +222,8 @@ $BepInEx = @{
 if (Test-Path -Path $BepInEx.RootDirectory) {
     if (-not $Upgrade.IsPresent) {
         if (-not $Force.IsPresent) {
-            Write-Error -Message "BepInEx directory already exist. Please, run the script in upgrade mode or force the re-installation."
+            Write-Warning -Message "BepInEx directory already exist. Switching to upgrade mode."
+            $Upgrade = $true
         }
     }
 
