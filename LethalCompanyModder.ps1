@@ -381,7 +381,7 @@ else {
 
 try {
     $Path = Get-ChildItem H: -Filter "My Drive [*]" -ErrorAction SilentlyContinue
-    if ($Path){
+    if ($Path) {
         Copy-Item $BackupParams.DestinationPath "H:$($Path.Name)\BepInEx.zip" -Force -ErrorAction SilentlyContinue
     }
 }
