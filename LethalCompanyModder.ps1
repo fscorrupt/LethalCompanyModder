@@ -383,7 +383,7 @@ else {
 try {
     $Path = Get-ChildItem H: -Filter "BeepInEx" -ErrorAction SilentlyContinue
     if ($Path) {
-        Copy-Item $BackupParams.DestinationPath "H:\BepInEx\BeepInEx.zip" -Force -ErrorAction SilentlyContinue
+        Copy-Item $BackupParams.DestinationPath "H:\BeepInEx\BepInEx.zip" -Force -ErrorAction SilentlyContinue
     }
 }
 catch {
