@@ -134,7 +134,7 @@ function Invoke-StartWaitStopProcess {
 #region ---- Definition of mods for Lethal Company
 $ModsData = $(switch ($PSCmdlet.ParameterSetName) {
         "Curated" {
-            Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Indaclouds/LethalCompanyModder/$GitBranch/mods.json" | Select-Object -ExpandProperty Content
+            Invoke-WebRequest -Uri "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/$GitBranch/mods.json" | Select-Object -ExpandProperty Content
         }
         "Custom" {
             Get-Content -Path $File -Raw
@@ -321,6 +321,21 @@ foreach ($mod in $ThunderstoreMods) {
 }
 
 Write-Host "Installation of Lethal Company mods completed." -ForegroundColor Cyan
+
+# Edit config file
+$ConfigFileName = "RickArg.lethalcompany.helmetcameras.cfg"
+
+Write-Host "Now lets modify the config file: $ConfigFileName"
+
+# Read the content of the file
+$fileContent = Get-Content $BepInEx.ConfigDirectory\$ConfigFileName  -Raw
+
+# Use regular expressions to find and replace the values
+$fileContent = $fileContent -replace '(?<=monitorResolution = )\d+', '4'
+$fileContent = $fileContent -replace '(?<=renderDistance = )\d+', '25'
+
+# Write the modified content back to the file
+$fileContent | Set-Content $BepInEx.ConfigDirectory\$ConfigFileName
 
 Write-Host "`r`nGet back to work with your crewmates! No more excuses for not meeting the Company's profit quotas...`r`n" -ForegroundColor Green
 #endregion ----

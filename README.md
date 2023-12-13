@@ -19,8 +19,6 @@ You don't need to install anything on your Windows system to run this script.
       - [Clean installation](#clean-installation)
   - [Curated presets of mods](#curated-presets-of-mods)
     - [`Default` preset](#default-preset)
-    - [`Hardcore` preset](#hardcore-preset)
-    - [`Experimental` preset](#experimental-preset)
   - [Check your files](#check-your-files)
 
 ---
@@ -35,7 +33,7 @@ To run ths script, follow these steps:
 2. Copy this _one-liner_ command in the console:
 
     ```powershell
-    Set-ExecutionPolicy Bypass -Scope Process -Force; $Script = "$env:TEMP\LethalCompanyModder.ps1"; iwr "https://raw.githubusercontent.com/Indaclouds/LethalCompanyModder/main/LethalCompanyModder.ps1" -OutFile $Script; & $Script # Add parameters here if required
+    Set-ExecutionPolicy Bypass -Scope Process -Force; $Script = "$env:TEMP\LethalCompanyModder.ps1"; iwr "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/main/LethalCompanyModder.ps1" -OutFile $Script; & $Script # Add parameters here if required
     ```
 
 3. Execute it.
@@ -55,7 +53,7 @@ If needed, you can pass some parameters to the script:
 Install mods from a preser maintained by us on GitHub:
 
 ```powershell
-& .\LethalCompanyModder.ps1 -Preset "Hardcore"
+& .\LethalCompanyModder.ps1 -Preset "Default"
 ```
 
 #### Install a preset of mods from file
@@ -109,31 +107,15 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [TerminalApi](https://thunderstore.io/c/lethal-company/p/NotAtomicBomb/TerminalApi/) by [NotAtomicBomb](https://github.com/NotAtomicBomb)
 - [Terminal Clock](https://thunderstore.io/c/lethal-company/p/NotAtomicBomb/Terminal_Clock/) by [NotAtomicBomb](https://github.com/NotAtomicBomb)
 - [LBtoKG](https://thunderstore.io/c/lethal-company/p/Zduniusz/LBtoKG/) by Zduniusz
-- [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
-
-### `Hardcore` preset
-
-- [MoreCompany](https://thunderstore.io/c/lethal-company/p/notnotnotswipez/MoreCompany/) by [notnotnotswipez](https://github.com/notnotnotswipez)
-- [LateCompany](https://thunderstore.io/c/lethal-company/p/anormaltwig/LateCompany/) by [anormaltwig](https://github.com/ANormalTwig)
-- [ShipLoot](https://thunderstore.io/c/lethal-company/p/tinyhoot/ShipLoot/) by [tinyhoot](https://github.com/tinyhoot)
-- [LBtoKG](https://thunderstore.io/c/lethal-company/p/Zduniusz/LBtoKG/) by Zduniusz
 - [LC API](https://thunderstore.io/c/lethal-company/p/2018/LC_API/) by [2018](https://github.com/u-2018)
-- [Brutal Company](https://thunderstore.io/c/lethal-company/p/2018/Brutal_Company/) by [2018](https://github.com/u-2018)
-- [SuperLandmine](https://thunderstore.io/c/lethal-company/p/phawitpp/SuperLandmine/) by phawitpp
-- [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
-
-### `Experimental` preset
-
-- [MoreCompany](https://thunderstore.io/c/lethal-company/p/notnotnotswipez/MoreCompany/) by [notnotnotswipez](https://github.com/notnotnotswipez)
-- [LateCompany](https://thunderstore.io/c/lethal-company/p/anormaltwig/LateCompany/) by [anormaltwig](https://github.com/ANormalTwig)
-- [ShipLoot](https://thunderstore.io/c/lethal-company/p/tinyhoot/ShipLoot/) by [tinyhoot](https://github.com/tinyhoot)
-- [HealthMetrics](https://thunderstore.io/c/lethal-company/p/matsuura/HealthMetrics/) by matsuura
-- [TerminalApi](https://thunderstore.io/c/lethal-company/p/NotAtomicBomb/TerminalApi/) by [NotAtomicBomb](https://github.com/NotAtomicBomb)
-- [Terminal Clock](https://thunderstore.io/c/lethal-company/p/NotAtomicBomb/Terminal_Clock/) by [NotAtomicBomb](https://github.com/NotAtomicBomb)
-- [LBtoKG](https://thunderstore.io/c/lethal-company/p/Zduniusz/LBtoKG/) by Zduniusz
-- [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
-- [Solos Bodycams](https://thunderstore.io/c/lethal-company/p/CapyCat/Solos_Bodycams/) by CapyCat
 - [More Suits](https://thunderstore.io/c/lethal-company/p/x753/More_Suits/) by x753
+- [Helmet Cameras](https://thunderstore.io/c/lethal-company/p/RickArg/Helmet_Cameras/) by RickArg
+- [Spectate Enemies](https://thunderstore.io/c/lethal-company/p/AllToasters/SpectateEnemies/) by AllToasters
+- [Coroner](https://thunderstore.io/c/lethal-company/p/EliteMasterEric/Coroner/) by EliteMasterEric
+- [MoreBlood](https://thunderstore.io/c/lethal-company/p/FlipMods/MoreBlood/) by FlipMods
+- [Doom](https://thunderstore.io/c/lethal-company/p/Cryptoc1/LC_DOOM/) by Cryptoc1
+- [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
+
 
 ## Check your files
 
