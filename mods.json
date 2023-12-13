@@ -30,7 +30,7 @@
       "ServerHostOnly": false
     },
     {
-      "Name": "Doom",
+      "Name": "LC_DOOM",
       "DisplayName": "LC DOOM",
       "Description": "Play DOOM in the Ship's Terminal",
       "Provider": "Thunderstore",
