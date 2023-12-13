@@ -15,7 +15,6 @@ You don't need to install anything on your Windows system to run this script.
       - [Install a curated preset of mods](#install-a-curated-preset-of-mods)
       - [Install a preset of mods from file](#install-a-preset-of-mods-from-file)
       - [Install for game host](#install-for-game-host)
-      - [Upgrade](#upgrade)
       - [Clean installation](#clean-installation)
   - [Curated presets of mods](#curated-presets-of-mods)
     - [`Default` preset](#default-preset)
@@ -32,9 +31,9 @@ To run ths script, follow these steps:
 1. Open a PowerShell console.
 2. Copy this _one-liner_ command in the console:
 
-    ```powershell
-    Set-ExecutionPolicy Bypass -Scope Process -Force; $Script = "$env:TEMP\LethalCompanyModder.ps1"; iwr "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/main/LethalCompanyModder.ps1" -OutFile $Script; & $Script # Add parameters here if required
-    ```
+   ```powershell
+   Set-ExecutionPolicy Bypass -Scope Process -Force; $Script = "$env:TEMP\LethalCompanyModder.ps1";rm $Script -Force -ErrorAction SilentlyContinue; iwr "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/main/LethalCompanyModder.ps1" -OutFile $Script; & $Script
+   ```
 
 3. Execute it.
 
@@ -75,6 +74,7 @@ Install mods, including those required only by the game host:
 #### Upgrade
 
 If you need to upgrade your mods, re-run the script with the `Upgrade` parameter.
+If `BepInEx` Folder is detected without the Upgrade Switch, it will automatically switch to Upgrade Mode.
 
 ```powershell
 & .\LethalCompanyModder.ps1 -Upgrade
@@ -115,7 +115,6 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [MoreBlood](https://thunderstore.io/c/lethal-company/p/FlipMods/MoreBlood/) by FlipMods
 - [Doom](https://thunderstore.io/c/lethal-company/p/Cryptoc1/LC_DOOM/) by Cryptoc1
 - [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
-
 
 ## Check your files
 
