@@ -113,7 +113,9 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [Spectate Enemies](https://thunderstore.io/c/lethal-company/p/AllToasters/SpectateEnemies/) by AllToasters
 - [Coroner](https://thunderstore.io/c/lethal-company/p/EliteMasterEric/Coroner/) by EliteMasterEric
 - [MoreBlood](https://thunderstore.io/c/lethal-company/p/FlipMods/MoreBlood/) by FlipMods
-- [Doom](https://thunderstore.io/c/lethal-company/p/Cryptoc1/LC_DOOM/) by Cryptoc1
+- [Touchscreen](https://thunderstore.io/c/lethal-company/p/TheDeadSnake/Touchscreen/) by TheDeadSnake
+- [ScrapCalculator](https://thunderstore.io/c/lethal-company/p/granny/ScrapCalculator/) by granny
+- [CompatibilityChecker](https://thunderstore.io/c/lethal-company/p/Ryokune/CompatibilityChecker/) by Ryokune
 - [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
 
 ## Check your files
