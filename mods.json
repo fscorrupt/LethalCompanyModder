@@ -7,8 +7,12 @@
       "HealthMetrics",
       "TerminalApi",
       "Terminal_Clock",
+      "TerminalHistory",
+      "LethalCompany_InputUtils",
+      "DissonanceLagFix",
       "LBtoKG",
       "LC_API",
+      "LC_DOOM",
       "More_Suits",
       "Helmet_Cameras",
       "SpectateEnemies",
@@ -21,6 +25,36 @@
     ]
   },
   "Mods": [
+    {
+      "Name": "DissonanceLagFix",
+      "DisplayName": "DissonanceLagFix",
+      "Description": "This plugin significantly reduces the duration of lag spikes simply by changing the log level of DissonanceVoip.",
+      "Provider": "Thunderstore",
+      "Namespace": "linkoid",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
+    {
+      "Name": "LethalCompany_InputUtils",
+      "DisplayName": "LethalCompany_InputUtils",
+      "Description": "Utilities for creating InputActions and having them be accessible in game",
+      "Provider": "Thunderstore",
+      "Namespace": "Rune580",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
+    {
+      "Name": "TerminalHistory",
+      "DisplayName": "TerminalHistory",
+      "Description": "Adds the ability to cycle through recent terminal commands with rebindable keys.",
+      "Provider": "Thunderstore",
+      "Namespace": "deemodev",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "CompatibilityChecker",
       "DisplayName": "CompatibilityChecker",
