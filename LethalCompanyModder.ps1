@@ -383,13 +383,66 @@ else {
 try {
     $Path = Get-ChildItem H: -Filter "BeepInEx" -ErrorAction SilentlyContinue
     if ($Path) {
+        Write-Host "Copy Backup to Google Drive..." -ForegroundColor Cyan
         Copy-Item $BackupParams.DestinationPath "H:\BeepInEx\BepInEx.zip" -Force -ErrorAction SilentlyContinue
     }
 }
 catch {
     #nothing
 }
+<#
+    # Doom Part
+    Write-Host "Starting setup of DOOM..." -ForegroundColor Cyan
 
+    # dot.Net Prerequisite
+    Write-Host "Checking dot.Net prerequisite..." -ForegroundColor Cyan
+    Invoke-WebRequest -Uri https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.ps1 -OutFile "$TemporaryDirectory\dotnet-install.ps1"
+    & "$TemporaryDirectory\dotnet-install.ps1"
+    $DoomDownloadUrl = "https://codeload.github.com/Cryptoc1/lc-doom/zip/refs/heads/develop"
 
+    Write-Host "Starting setup of DOOM..." -ForegroundColor Cyan
+    if (-not $DoomDownloadUrl) { Write-Error -Message "Doom download URL not found." }
+    try {
+        $TempPackage = Invoke-PackageDownloader -Url $DoomDownloadUrl
+        Write-Host "        Copy Doom repo to `"$GameDirectory`"."
+        Copy-Item -Path "$TempPackage\*" -Destination $GameDirectory -Recurse -Force
+    }
+    finally { if ($TempPackage) { Remove-Item -Path $TempPackage -Recurse } }
+
+    Write-Host "        Now we have to create the .user csproj..."
+
+    $doomcsprojFile = "LethalCompany.Doom.csproj.user"
+    $doomcsprojPath = "$GameDirectory\lc-doom-develop\src\src\$doomcsprojFile "
+    $ManagedPath = "$GameDirectory\Lethal Company_Data\Managed"
+    $LCDOOMPath = "$GameDirectory\BepInEx\plugins\LC-DOOM"
+
+    if (!(Test-Path $LCDOOMPath)) {
+        New-Item -ItemType Directory -Path $LCDOOMPath | Out-Null
+    }
+    # Read the content of the file
+    if (Test-Path $doomcsprojPath) {
+        $fileContent = Get-Content $doomcsprojPath -Raw
+    }
+    Else {
+        $Content = @"
+    <PropertyGroup>
+        <GameManagedDir>$ManagedPath</GameManagedDir>
+        <PluginPublishDir>$LCDOOMPath</PluginPublishDir>
+    </PropertyGroup>
+    "@
+        $content | Out-File  $doomcsprojPath -Force
+        Start-Sleep 2
+        $content | Set-Content $doomcsprojPath
+        $fileContent = Get-Content $doomcsprojPath -Raw
+        Write-Host "        Change .user csproj Game Data..."
+    }
+
+    # Switch to Project src
+    Set-Location "$GameDirectory\lc-doom-develop"
+    Write-Host "Starting to publish doom game..." -ForegroundColor Cyan
+    dotnet publish -p:PublishPlugin=true
+
+    Write-Host "Setup of DOOM completed..." -ForegroundColor Cyan
+#>
 Write-Host "`r`nGet back to work with your crewmates! No more excuses for not meeting the Company's profit quotas...`r`n" -ForegroundColor Green
 #endregion ----

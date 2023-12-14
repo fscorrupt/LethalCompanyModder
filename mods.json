@@ -12,7 +12,6 @@
       "DissonanceLagFix",
       "LBtoKG",
       "LC_API",
-      "LC_DOOM",
       "More_Suits",
       "Helmet_Cameras",
       "SpectateEnemies",
@@ -91,16 +90,6 @@
       "Description": "For monitoring first person cameras on player's helmets.",
       "Provider": "Thunderstore",
       "Namespace": "RickArg",
-      "Type": "BepInExPlugin",
-      "ExtraIncludes": [],
-      "ServerHostOnly": false
-    },
-    {
-      "Name": "LC_DOOM",
-      "DisplayName": "LC DOOM",
-      "Description": "Play DOOM in the Ship's Terminal",
-      "Provider": "Thunderstore",
-      "Namespace": "Cryptoc1",
       "Type": "BepInExPlugin",
       "ExtraIncludes": [],
       "ServerHostOnly": false

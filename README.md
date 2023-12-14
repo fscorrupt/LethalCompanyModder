@@ -119,7 +119,6 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [TerminalHistory](https://thunderstore.io/c/lethal-company/p/deemodev/TerminalHistory/) by  deemodev
 - [InputUtils](https://thunderstore.io/c/lethal-company/p/Rune580/LethalCompany_InputUtils/) by Rune580
 - [DissonanceLagFix](https://thunderstore.io/c/lethal-company/p/linkoid/DissonanceLagFix/) by linkoid
-- [DOOM](https://thunderstore.io/c/lethal-company/p/Cryptoc1/LC_DOOM/) by Cryptoc1
 - [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
 
 ## Check your files
