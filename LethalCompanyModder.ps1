@@ -228,7 +228,7 @@ if (Test-Path -Path $BepInEx.RootDirectory) {
     }
 
     # Backup BepInEx directory
-    Write-Host "Backup BepInEx directory."
+    Write-Host "Backup Current BepInEx directory."
     $BackupParams = @{
         Path            = $BepInEx.RootDirectory
         DestinationPath = "{0}_Backup.zip" -f $BepInEx.RootDirectory
@@ -264,7 +264,12 @@ if (Test-Path -Path $BepInEx.RootDirectory) {
 }
 
 # Install BepInEx from GitHub
-Write-Host "Install BepInEx plugin framework."
+if ($Upgrade.IsPresent) {
+    Write-Host "Update BepInEx plugin framework."
+}
+Else {
+    Write-Host "Install BepInEx plugin framework."
+}
 $DownloadUrl = (Invoke-RestMethod -Uri "https://api.github.com/repos/BepInEx/BepInEx/releases/latest")."assets"."browser_download_url" | Select-String -Pattern ".*\/BepInEx_x64_.*.zip"
 if (-not $DownloadUrl) { Write-Error -Message "BepInEx download URL not found." }
 try {
@@ -275,7 +280,13 @@ try {
 finally { if ($TempPackage) { Remove-Item -Path $TempPackage -Recurse } }
 
 # Run Lethal Company executable to generate BepInEx configuration files
-Write-Host "Launch Lethal Company to install BepInEx."
+if ($Upgrade.IsPresent) {
+    Write-Host "Launch Lethal Company to update BepInEx."
+}
+Else {
+    Write-Host "Launch Lethal Company to install BepInEx."
+}
+
 Invoke-StartWaitStopProcess -Executable $GameExecutable -ProcessName "Lethal Company"
 
 # Check if BepInEx files have been successfully generated
@@ -288,7 +299,12 @@ $BepInEx.ConfigFile, $BepInEx.LogFile | ForEach-Object -Process {
 # Install Mods from Thunderstore
 $ThunderstoreMods = $Mods | Where-Object -Property "Provider" -EQ -Value "Thunderstore"
 foreach ($mod in $ThunderstoreMods) {
-    Write-Host ("       Install {0} mod by {1}." -f $mod.DisplayName, $mod.Namespace)
+    if ($Upgrade.IsPresent) {
+        Write-Host ("       Update {0} mod by {1}." -f $mod.DisplayName, $mod.Namespace)
+    }
+    Else {
+        Write-Host ("       Install {0} mod by {1}." -f $mod.DisplayName, $mod.Namespace)
+    }
     $FullName = "{0}/{1}" -f $mod.Namespace, $mod.Name
     $DownloadUrl = (Invoke-RestMethod -Uri "https://thunderstore.io/api/experimental/package/$FullName/")."latest"."download_url"
     if (-not $DownloadUrl) { Write-Error -Message "$FullName mod download URL was not found." }
@@ -321,7 +337,12 @@ foreach ($mod in $ThunderstoreMods) {
     finally { if ($TempPackage) { Remove-Item -Path $TempPackage -Recurse } }
 }
 
-Write-Host "Installation of Lethal Company mods completed." -ForegroundColor Cyan
+if ($Upgrade.IsPresent) {
+    Write-Host "Update of Lethal Company mods completed." -ForegroundColor Cyan
+}
+Else {
+    Write-Host "Installation of Lethal Company mods completed." -ForegroundColor Cyan
+}
 
 # Edit config file
 $ConfigFileName = "RickArg.lethalcompany.helmetcameras.cfg"
@@ -383,8 +404,15 @@ else {
 try {
     $Path = Get-ChildItem H: -Filter "BeepInEx" -ErrorAction SilentlyContinue
     if ($Path) {
-        Write-Host "Copy Backup to Google Drive..." -ForegroundColor Cyan
-        Copy-Item $BackupParams.DestinationPath "H:\BeepInEx\BepInEx.zip" -Force -ErrorAction SilentlyContinue
+        # Backup BepInEx directory
+        Write-Host "Backup Updated BepInEx directory and copy it to Google Drive..."
+        $BackupUpdatedParams = @{
+            Path            = $BepInEx.RootDirectory
+            DestinationPath = "{0}_Backup_Updated.zip" -f $BepInEx.RootDirectory
+        }
+        Write-Debug -Message ("Backup existing BepInEx directory to `"{0}`"." -f $BackupUpdatedParams.DestinationPath)
+        Compress-Archive @BackupUpdatedParams -Force
+        Copy-Item $BackupUpdatedParams.DestinationPath "H:\BeepInEx\BepInEx.zip" -Force -ErrorAction SilentlyContinue
     }
 }
 catch {
