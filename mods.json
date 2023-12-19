@@ -20,10 +20,21 @@
       "Touchscreen",
       "ScrapCalculator",
       "CompatibilityChecker",
+      "FlashlightFix",
       "AlwaysHearActiveWalkies"
     ]
   },
   "Mods": [
+    {
+      "Name": "FlashlightFix",
+      "DisplayName": "FlashlightFix",
+      "Description": "Fixes annoying flashlight bugs like being toggled when it shouldn't be.",
+      "Provider": "Thunderstore",
+      "Namespace": "ShaosilGaming",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "DissonanceLagFix",
       "DisplayName": "DissonanceLagFix",
