@@ -21,10 +21,43 @@
       "ScrapCalculator",
       "CompatibilityChecker",
       "FlashlightFix",
+      "SuitSaver",
+      "LCBetterSaves",
+      "LethalPing",
       "AlwaysHearActiveWalkies"
     ]
   },
   "Mods": [
+    {
+      "Name": "LethalPing",
+      "DisplayName": "LethalPing",
+      "Description": "Send pings to your friends!",
+      "Provider": "Thunderstore",
+      "Namespace": "Greyull",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
+    {
+      "Name": "LCBetterSaves",
+      "DisplayName": "LCBetterSaves",
+      "Description": "Have as many saves as you want! (And rename them, too!)",
+      "Provider": "Thunderstore",
+      "Namespace": "Pooble",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
+    {
+      "Name": "SuitSaver",
+      "DisplayName": "SuitSaver",
+      "Description": "A plugin for saving your last used suit.",
+      "Provider": "Thunderstore",
+      "Namespace": "Hexnet111",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "FlashlightFix",
       "DisplayName": "FlashlightFix",
