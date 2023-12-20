@@ -2,6 +2,7 @@
   "Presets": {
     "Default": [
       "MoreCompany",
+      "More_Emotes",
       "LateCompany",
       "ShipLoot",
       "HealthMetrics",
@@ -28,6 +29,16 @@
     ]
   },
   "Mods": [
+    {
+      "Name": "More_Emotes",
+      "DisplayName": "More_Emotes",
+      "Description": "Adds more emotes!!",
+      "Provider": "Thunderstore",
+      "Namespace": "Sligili",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "LethalPing",
       "DisplayName": "LethalPing",
