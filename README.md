@@ -119,6 +119,10 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [TerminalHistory](https://thunderstore.io/c/lethal-company/p/deemodev/TerminalHistory/) by  deemodev
 - [InputUtils](https://thunderstore.io/c/lethal-company/p/Rune580/LethalCompany_InputUtils/) by Rune580
 - [DissonanceLagFix](https://thunderstore.io/c/lethal-company/p/linkoid/DissonanceLagFix/) by linkoid
+- [LethalPing](https://thunderstore.io/c/lethal-company/p/Greyull/LethalPing/) by Greyull
+- [LCBetterSaves](https://thunderstore.io/c/lethal-company/p/Pooble/LCBetterSaves/) by Pooble
+- [SuitSaver](https://thunderstore.io/c/lethal-company/p/Hexnet111/SuitSaver/) by Hexnet111
+- [FlashlightFix](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/FlashlightFix/) by ShaosilGaming
 - [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
 
 ## Check your files
