@@ -108,22 +108,22 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [Terminal Clock](https://thunderstore.io/c/lethal-company/p/NotAtomicBomb/Terminal_Clock/) by [NotAtomicBomb](https://github.com/NotAtomicBomb)
 - [LBtoKG](https://thunderstore.io/c/lethal-company/p/Zduniusz/LBtoKG/) by Zduniusz
 - [LC API](https://thunderstore.io/c/lethal-company/p/2018/LC_API/) by [2018](https://github.com/u-2018)
-- [More Suits](https://thunderstore.io/c/lethal-company/p/x753/More_Suits/) by x753
-- [Helmet Cameras](https://thunderstore.io/c/lethal-company/p/RickArg/Helmet_Cameras/) by RickArg
-- [Spectate Enemies](https://thunderstore.io/c/lethal-company/p/AllToasters/SpectateEnemies/) by AllToasters
-- [Coroner](https://thunderstore.io/c/lethal-company/p/EliteMasterEric/Coroner/) by EliteMasterEric
+- [More Suits](https://thunderstore.io/c/lethal-company/p/x753/More_Suits/) by [x753](https://github.com/x753)
+- [Helmet Cameras](https://thunderstore.io/c/lethal-company/p/RickArg/Helmet_Cameras/) by [RickArg](https://github.com/The0therOne)
+- [Spectate Enemies](https://thunderstore.io/c/lethal-company/p/AllToasters/SpectateEnemies/) by [AllToasters]( https://github.com/EBro912)
+- [Coroner](https://thunderstore.io/c/lethal-company/p/EliteMasterEric/Coroner/) by [EliteMasterEric](https://github.com/EliteMasterEric)
 - [MoreBlood](https://thunderstore.io/c/lethal-company/p/FlipMods/MoreBlood/) by FlipMods
-- [Touchscreen](https://thunderstore.io/c/lethal-company/p/TheDeadSnake/Touchscreen/) by TheDeadSnake
-- [BetterItemScan](https://thunderstore.io/c/lethal-company/p/PopleZoo/BetterItemScan/) by PopleZoo
-- [CompatibilityChecker](https://thunderstore.io/c/lethal-company/p/Ryokune/CompatibilityChecker/) by Ryokune
+- [Touchscreen](https://thunderstore.io/c/lethal-company/p/TheDeadSnake/Touchscreen/) by [TheDeadSnake](https://github.com/TheDeadSnake)
+- [BetterItemScan](https://thunderstore.io/c/lethal-company/p/PopleZoo/BetterItemScan/) by [PopleZoo](https://github.com/PopleZoo)
+- [CompatibilityChecker](https://thunderstore.io/c/lethal-company/p/Ryokune/CompatibilityChecker/) by [Ryokune]( https://github.com/VisualError)
 - [TerminalHistory](https://thunderstore.io/c/lethal-company/p/deemodev/TerminalHistory/) by  deemodev
-- [InputUtils](https://thunderstore.io/c/lethal-company/p/Rune580/LethalCompany_InputUtils/) by Rune580
-- [DissonanceLagFix](https://thunderstore.io/c/lethal-company/p/linkoid/DissonanceLagFix/) by linkoid
-- [LethalPing](https://thunderstore.io/c/lethal-company/p/Greyull/LethalPing/) by Greyull
-- [LCBetterSaves](https://thunderstore.io/c/lethal-company/p/Pooble/LCBetterSaves/) by Pooble
-- [SuitSaver](https://thunderstore.io/c/lethal-company/p/Hexnet111/SuitSaver/) by Hexnet111
-- [FlashlightFix](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/FlashlightFix/) by ShaosilGaming
-- [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
+- [InputUtils](https://thunderstore.io/c/lethal-company/p/Rune580/LethalCompany_InputUtils/) by [Rune580](https://github.com/Rune580)
+- [DissonanceLagFix](https://thunderstore.io/c/lethal-company/p/linkoid/DissonanceLagFix/) by [linkoid](https://github.com/linkoid)
+- [LethalPing](https://thunderstore.io/c/lethal-company/p/Greyull/LethalPing/) by [Greyull](https://github.com/Greyull)
+- [LCBetterSaves](https://thunderstore.io/c/lethal-company/p/Pooble/LCBetterSaves/) by [Pooble](https://github.com/paul-merkamp)
+- [SuitSaver](https://thunderstore.io/c/lethal-company/p/Hexnet111/SuitSaver/) by [Hexnet111](https://github.com/Hexnet111)
+- [FlashlightFix](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/FlashlightFix/) by [ShaosilGaming](https://github.com/Shaosil)
+- [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by [Suskitech](https://github.com/n33kos)
 - [More Emotes](https://thunderstore.io/c/lethal-company/p/Sligili/More_Emotes/) by Sligili
 
 ## Check your files
