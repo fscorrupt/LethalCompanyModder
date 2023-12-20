@@ -124,6 +124,7 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [SuitSaver](https://thunderstore.io/c/lethal-company/p/Hexnet111/SuitSaver/) by Hexnet111
 - [FlashlightFix](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/FlashlightFix/) by ShaosilGaming
 - [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by Suskitech
+- [More Emotes](https://thunderstore.io/c/lethal-company/p/Sligili/More_Emotes/) by Sligili
 
 ## Check your files
 
