@@ -114,7 +114,7 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [Coroner](https://thunderstore.io/c/lethal-company/p/EliteMasterEric/Coroner/) by EliteMasterEric
 - [MoreBlood](https://thunderstore.io/c/lethal-company/p/FlipMods/MoreBlood/) by FlipMods
 - [Touchscreen](https://thunderstore.io/c/lethal-company/p/TheDeadSnake/Touchscreen/) by TheDeadSnake
-- [ScrapCalculator](https://thunderstore.io/c/lethal-company/p/granny/ScrapCalculator/) by granny
+- [BetterItemScan](https://thunderstore.io/c/lethal-company/p/PopleZoo/BetterItemScan/) by PopleZoo
 - [CompatibilityChecker](https://thunderstore.io/c/lethal-company/p/Ryokune/CompatibilityChecker/) by Ryokune
 - [TerminalHistory](https://thunderstore.io/c/lethal-company/p/deemodev/TerminalHistory/) by  deemodev
 - [InputUtils](https://thunderstore.io/c/lethal-company/p/Rune580/LethalCompany_InputUtils/) by Rune580
