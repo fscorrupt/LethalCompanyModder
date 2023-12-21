@@ -298,6 +298,7 @@ $BepInEx.ConfigFile, $BepInEx.LogFile | ForEach-Object -Process {
 
 # Install Mods from Thunderstore
 $ThunderstoreMods = $Mods | Where-Object -Property "Provider" -EQ -Value "Thunderstore"
+$mod = $Mods | Where-Object -Property "Name" -EQ -Value "More_Emotes"
 foreach ($mod in $ThunderstoreMods) {
     if ($Upgrade.IsPresent) {
         Write-Host ("       Update {0} mod by {1}." -f $mod.DisplayName, $mod.Namespace)
@@ -314,6 +315,13 @@ foreach ($mod in $ThunderstoreMods) {
             "BepInExPlugin" {
                 Write-Debug -Message ("{0} {1}: Copy DLL files to `"{2}`"." -f $mod.Type, $FullName, $BepInEx.PluginsDirectory)
                 Get-ChildItem -Path "$TempPackage\*" -Include "*.dll" -Recurse | Move-Item -Destination $BepInEx.PluginsDirectory
+                if ($mod.Name -EQ "More_Emotes") {
+                    $MoreEmotesFolder = $BepInEx.PluginsDirectory + "\MoreEmotes"
+                    New-Item -ItemType Directory -Path $BepInEx.PluginsDirectory -Name MoreEmotes -Force | Out-Null
+                    Get-ChildItem -Path "$TempPackage\*" -Include "*animationsbundle*" -Recurse | Move-Item -Destination $MoreEmotesFolder
+                    Get-ChildItem -Path "$TempPackage\*" -Include "*animatorbundle*" -Recurse | Move-Item -Destination $MoreEmotesFolder
+                }
+
                 foreach ($item in $mod.ExtraIncludes) {
                     $Path = Join-Path -Path $TempPackage -ChildPath $item
                     Write-Debug -Message ("{0} {1}: Copy `"{2}`" to `"{3}`"." -f $mod.Type, $FullName, $item, $BepInEx.PluginsDirectory)
@@ -345,14 +353,16 @@ Else {
 }
 
 # Edit config file
-$ConfigFileName = "RickArg.lethalcompany.helmetcameras.cfg"
-$ConfigPath = $BepInEx.ConfigDirectory + "\" + $ConfigFileName
+$HelmetCameraConfig = "RickArg.lethalcompany.helmetcameras.cfg"
+$MoreEmotesConfig = "MoreEmotes.cfg"
+$HelmetCameraConfigPath = $BepInEx.ConfigDirectory + "\" + $HelmetCameraConfig
+$MoreEmotesConfigPath = $BepInEx.ConfigDirectory + "\" + $MoreEmotesConfig
 
-Write-Host "        Now lets modify the config file: $ConfigFileName"
+Write-Host "        Now lets modify the config file: $HelmetCameraConfig"
 
 # Read the content of the file
-if (Test-Path $ConfigPath) {
-    $fileContent = Get-Content $ConfigPath -Raw
+if (Test-Path $HelmetCameraConfigPath) {
+    $HelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
 }
 Else {
     $Content = @"
@@ -376,26 +386,101 @@ renderDistance = 25
 # Default value: 30
 cameraFps = 30
 "@
-    $content | Out-File  $ConfigPath -Force
+    $content | Out-File  $HelmetCameraConfigPath -Force
     Start-Sleep 2
-    $content | Set-Content $ConfigPath
-    $fileContent = Get-Content $ConfigPath -Raw
+    $content | Set-Content $HelmetCameraConfigPath
+    $HelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
 }
 
 # Use regular expressions to find and replace the values
-$fileContent = $fileContent -replace '(?<=monitorResolution = )\d+', '4'
-$fileContent = $fileContent -replace '(?<=renderDistance = )\d+', '25'
+$HelmetCameraContent = $HelmetCameraContent -replace '(?<=monitorResolution = )\d+', '4'
+$HelmetCameraContent = $HelmetCameraContent -replace '(?<=renderDistance = )\d+', '25'
 
 # Write the modified content back to the file
-$fileContent | Set-Content $ConfigPath
+$HelmetCameraContent | Set-Content $HelmetCameraConfigPath
 
 # Check if the changes were successful
-$updatedContent = Get-Content $ConfigPath -Raw
-$monitorResolution = [regex]::Match($updatedContent, '(?<=monitorResolution = )\d+').Value
-$renderDistance = [regex]::Match($updatedContent, '(?<=renderDistance = )\d+').Value
+$updatedHelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
+$monitorResolution = [regex]::Match($updatedHelmetCameraContent, '(?<=monitorResolution = )\d+').Value
+$renderDistance = [regex]::Match($updatedHelmetCameraContent, '(?<=renderDistance = )\d+').Value
 
 if ($monitorResolution -eq '4' -and $renderDistance -eq '25') {
     Write-Host "Changes were successful. monitorResolution is now $monitorResolution and renderDistance is now $renderDistance." -ForegroundColor Cyan
+}
+else {
+    Write-Host "Changes were not successful." -ForegroundColor Red
+}
+
+# More Emotes Config Part
+Write-Host "        Now lets modify the config file: $MoreEmotesConfig"
+
+# Read the content of the file
+if (Test-Path $MoreEmotesConfigPath) {
+    $MoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
+}
+Else {
+    $Content = @"
+## Settings file was created by plugin MoreEmotes-Sligili v1.2.2
+## Plugin GUID: MoreEmotes
+
+[EMOTE WHEEL]
+
+# Setting type: String
+# Default value: v
+Key = m
+
+[OTHERS]
+
+## Prevents some emotes from performing while holding any item/scrap
+# Setting type: Boolean
+# Default value: true
+InventoryCheck = true
+
+[QUICK EMOTES]
+
+# Setting type: String
+# Default value: 3
+Middle Finger = 3
+
+# Setting type: String
+# Default value: 6
+The Griddy = 6
+
+# Setting type: String
+# Default value: 5
+Shy = 5
+
+# Setting type: String
+# Default value: 4
+Clap = 4
+
+# Setting type: String
+# Default value: 7
+Twerk = 7
+
+# Setting type: String
+# Default value: 8
+Salute = 8
+"@
+    $content | Out-File  $MoreEmotesConfigPath -Force
+    Start-Sleep 2
+    $content | Set-Content $MoreEmotesConfigPath
+    $MoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
+}
+
+# Use regular expressions to find and replace the values
+$MoreEmotesContent = $MoreEmotesContent -replace '(?<=^\s*Key\s*=\s*)v', 'm'
+
+# Write the modified content back to the file
+$MoreEmotesContent | Set-Content $MoreEmotesConfigPath
+
+# Check if the changes were successful
+$updatedMoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
+$wheel = [regex]::Match($updatedMoreEmotesContent, '(?<=Key = )\w+').Value
+
+
+if ($wheel -eq 'm') {
+    Write-Host "Changes were successful. key is now $wheel." -ForegroundColor Cyan
 }
 else {
     Write-Host "Changes were not successful." -ForegroundColor Red
@@ -405,7 +490,7 @@ try {
     $Path = Get-ChildItem H: -Filter "BeepInEx" -ErrorAction SilentlyContinue
     if ($Path) {
         # Backup BepInEx directory
-        Write-Host "Backup Updated BepInEx directory and copy it to Google Drive..."
+        Write-Host "        Backup Updated and copied to Google Drive..."
         $BackupUpdatedParams = @{
             Path            = $BepInEx.RootDirectory
             DestinationPath = "{0}_Backup_Updated.zip" -f $BepInEx.RootDirectory
