@@ -25,10 +25,43 @@
       "SuitSaver",
       "LCBetterSaves",
       "LethalPing",
+      "TerminalKeyBindings",
+      "StockOverview",
+      "MoreTerminalCommands",
       "AlwaysHearActiveWalkies"
     ]
   },
   "Mods": [
+    {
+      "Name": "MoreTerminalCommands",
+      "DisplayName": "MoreTerminalCommands",
+      "Description": "Adds new terminal commands like teleport and lights",
+      "Provider": "Thunderstore",
+      "Namespace": "NavarroTech",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },     
+    {
+      "Name": "StockOverview",
+      "DisplayName": "StockOverview",
+      "Description": "Prints a detailed overview of collected scrap to the terminal.",
+      "Provider": "Thunderstore",
+      "Namespace": "squall4120",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },    
+    {
+      "Name": "TerminalKeyBindings",
+      "DisplayName": "TerminalKeyBindings",
+      "Description": "Assign terminal commands to hotkeys, works with modded terminal commands.",
+      "Provider": "Thunderstore",
+      "Namespace": "NavarroTech",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "More_Emotes",
       "DisplayName": "More_Emotes",
