@@ -125,6 +125,9 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [FlashlightFix](https://thunderstore.io/c/lethal-company/p/ShaosilGaming/FlashlightFix/) by [ShaosilGaming](https://github.com/Shaosil)
 - [AlwaysHearActiveWalkies](https://thunderstore.io/c/lethal-company/p/Suskitech/AlwaysHearActiveWalkies/) by [Suskitech](https://github.com/n33kos)
 - [More Emotes](https://thunderstore.io/c/lethal-company/p/Sligili/More_Emotes/) by Sligili
+- [TerminalKeyBindings](https://thunderstore.io/c/lethal-company/p/NavarroTech/TerminalKeyBindings/) by NavarroTech
+- [StockOverview](https://thunderstore.io/c/lethal-company/p/squall4120/StockOverview/) by [squall4120](https://github.com/Squall4120)
+- [MoreTerminalCommands](https://thunderstore.io/c/lethal-company/p/NavarroTech/MoreTerminalCommands/) by NavarroTech
 
 ## Check your files
 
