@@ -1,3 +1,5 @@
+![Icon](icon.png)
+
 # LethalCompanyModder
 
 This PowerShell script installs a selection of mods for LethalCompany.
