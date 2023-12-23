@@ -61,7 +61,12 @@ param (
         HelpMessage = "Proceed to clean installation"
     )]
     [ValidateScript({ if ($Upgrade.IsPresent) { throw "Cannot use Upgrade and Force parameters at the same time." } else { $true } })]
-    [switch] $Force
+    [switch] $Force,
+
+    [Parameter(
+        HelpMessage = "Specify true to enable custom mod configuration, false otherwise"
+    )]
+    [switch] $CustomModConfig
 )
 
 #region ---- System and PowerShell configuration and pre-flight check
@@ -360,206 +365,136 @@ $HelmetCameraConfigPath = $BepInEx.ConfigDirectory + "\" + $HelmetCameraConfig
 $MoreEmotesConfigPath = $BepInEx.ConfigDirectory + "\" + $MoreEmotesConfig
 $TerminalKeyBindingsConfigPath = $BepInEx.ConfigDirectory + "\" + $TerminalKeyBindingsConfig
 
-Write-Host "Config file modification started." -ForegroundColor Cyan
-Write-Host "lets modify: " -NoNewline
-Write-Host "$HelmetCameraConfig" -ForegroundColor green
+# Modification of Config Files
+if ($CustomModConfig) {
+    Write-Host "Config file modification started." -ForegroundColor Cyan
+    Write-Host "lets modify: " -NoNewline
+    Write-Host "$HelmetCameraConfig" -ForegroundColor green
 
-# Read the content of the file
-if (Test-Path $HelmetCameraConfigPath) {
-    $HelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
-}
-Else {
-    $Content = @"
-## Settings file was created by plugin Helmet_Cameras v2.1.4
-## Plugin GUID: RickArg.lethalcompany.helmetcameras
+    # Read the content of the file
+    if (Test-Path $HelmetCameraConfigPath) {
+        $HelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
+    }
+    Else {
+        $HelmetCameraContent = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/$GitBranch/ModsConfigs/$HelmetCameraConfig" | Select-Object -ExpandProperty Content
+        $HelmetCameraContent | Out-File  $HelmetCameraConfigPath -Force
+        Start-Sleep 2
+        $HelmetCameraContent | Set-Content $HelmetCameraConfigPath
+        $HelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
+    }
 
-[MONITOR QUALITY]
+    # Use regular expressions to find and replace the values
+    $HelmetCameraContent = $HelmetCameraContent -replace '(?<=monitorResolution = )\d+', '4'
+    $HelmetCameraContent = $HelmetCameraContent -replace '(?<=renderDistance = )\d+', '25'
 
-## Low FPS affection. High Quality mode. 0 - vanilla (48x48), 1 - vanilla+ (128x128), 2 - mid quality (256x256), 3 - high quality (512x512), 4 - Very High Quality (1024x1024)
-# Setting type: Int32
-# Default value: 0
-monitorResolution = 4
+    # Write the modified content back to the file
+    $HelmetCameraContent | Set-Content $HelmetCameraConfigPath
 
-## Low FPS affection. Render distance for helmet camera.
-# Setting type: Int32
-# Default value: 20
-renderDistance = 25
+    # Check if the changes were successful
+    $updatedHelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
+    $monitorResolution = [regex]::Match($updatedHelmetCameraContent, '(?<=monitorResolution = )\d+').Value
+    $renderDistance = [regex]::Match($updatedHelmetCameraContent, '(?<=renderDistance = )\d+').Value
 
-## Very high FPS affection. FPS for helmet camera. To increase YOUR fps, you should low cameraFps value.
-# Setting type: Int32
-# Default value: 30
-cameraFps = 30
-"@
-    $content | Out-File  $HelmetCameraConfigPath -Force
-    Start-Sleep 2
-    $content | Set-Content $HelmetCameraConfigPath
-    $HelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
-}
+    if ($monitorResolution -eq '4' -and $renderDistance -eq '25') {
+        Write-Host "   Changes were successful. monitorResolution is now $monitorResolution and renderDistance is now $renderDistance." -ForegroundColor Cyan
+    }
+    else {
+        Write-Host "   Changes were not successful." -ForegroundColor Red
+    }
 
-# Use regular expressions to find and replace the values
-$HelmetCameraContent = $HelmetCameraContent -replace '(?<=monitorResolution = )\d+', '4'
-$HelmetCameraContent = $HelmetCameraContent -replace '(?<=renderDistance = )\d+', '25'
+    Write-Host "lets modify: " -NoNewline
+    Write-Host "$TerminalKeyBindingsConfig" -ForegroundColor green
 
-# Write the modified content back to the file
-$HelmetCameraContent | Set-Content $HelmetCameraConfigPath
+    # Read the content of the file
+    if (Test-Path $TerminalKeyBindingsConfigPath) {
+        $TerminalKeyBindingsContent = Get-Content $TerminalKeyBindingsConfigPath -Raw
+    }
+    Else {
+        $TerminalKeyBindingsContent = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/$GitBranch/ModsConfigs/$TerminalKeyBindingsConfig" | Select-Object -ExpandProperty Content
+        $TerminalKeyBindingsContent | Out-File  $TerminalKeyBindingsConfigPath -Force
+        Start-Sleep 2
+        $TerminalKeyBindingsContent | Set-Content $TerminalKeyBindingsConfigPath
+        $TerminalKeyBindingsContent = Get-Content $TerminalKeyBindingsConfigPath -Raw
+    }
 
-# Check if the changes were successful
-$updatedHelmetCameraContent = Get-Content $HelmetCameraConfigPath -Raw
-$monitorResolution = [regex]::Match($updatedHelmetCameraContent, '(?<=monitorResolution = )\d+').Value
-$renderDistance = [regex]::Match($updatedHelmetCameraContent, '(?<=renderDistance = )\d+').Value
+    # Use regular expressions to find and replace the values
+    $TerminalKeyBindingsContent = $TerminalKeyBindingsContent -replace '(?<=^\s*KeyMap\s*=\s*).*', 'KeyMap = Numpad0:scan;Numpad9:view monitor;Numpad1:switch Monstro;Numpad2:switch Smetana;Numpad3:switch PyJamaTank;Numpad4:switch FS.Corrupt;Numpad5:switch Chrusolika;Numpad6:switch Sickedwick;Numpad7:tp;Numpad8:itp;'
 
-if ($monitorResolution -eq '4' -and $renderDistance -eq '25') {
-    Write-Host "   Changes were successful. monitorResolution is now $monitorResolution and renderDistance is now $renderDistance." -ForegroundColor Cyan
-}
-else {
-    Write-Host "   Changes were not successful." -ForegroundColor Red
-}
+    # Write the modified content back to the file
+    $TerminalKeyBindingsContent | Set-Content $TerminalKeyBindingsConfigPath
 
-Write-Host "lets modify: " -NoNewline
-Write-Host "$TerminalKeyBindingsConfig" -ForegroundColor green
-
-# Read the content of the file
-if (Test-Path $TerminalKeyBindingsConfigPath) {
-    $TerminalKeyBindingsContent = Get-Content $TerminalKeyBindingsConfigPath -Raw
-}
-Else {
-    $Content = @"
-## Settings file was created by plugin TerminalKeyBindings v1.0.0
-## Plugin GUID: net.navarrotech.TerminalKeyBindings
-
-[KeyBindings]
-
-## Map commands as "key:terminal command;key:teriminal command;"Keys must be keyboard buttons, as 'X' will be the 'X' key, 'Digit9' will be '9' and 'num_5' will be numpad 5.Then write the command after the colon, and end the command with a semi-colon. Commands like ROUTE or BUY will be auto-confirmed for you.Acceptable values: None, Space, Enter, Tab, Backquote, Quote, Semicolon, Comma, Period, Slash, Backslash, LeftBracket, RightBracket, Minus, Equals, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, Digit1, Digit2, Digit3, Digit4, Digit5, Digit6, Digit7, Digit8, Digit9, Digit0, LeftShift, RightShift, LeftAlt, AltGr, AltGr, LeftCtrl, RightCtrl, LeftWindows, LeftWindows, LeftWindows, LeftWindows, RightCommand, RightCommand, RightCommand, RightCommand, ContextMenu, Escape, LeftArrow, RightArrow, UpArrow, DownArrow, Backspace, PageDown, PageUp, Home, End, Insert, Delete, CapsLock, NumLock, PrintScreen, ScrollLock, Pause, NumpadEnter, NumpadDivide, NumpadMultiply, NumpadPlus, NumpadMinus, NumpadPeriod, NumpadEquals, Numpad0, Numpad1, Numpad2, Numpad3, Numpad4, Numpad5, Numpad6, Numpad7, Numpad8, Numpad9, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12, OEM1, OEM2, OEM3, OEM4, OEM5, IMESelected
-# Setting type: String
-# Default value: Numpad0:scan;Numpad5:view monitor;
-KeyMap = Numpad0:scan;Numpad9:view monitor;Numpad1:switch Monstro;Numpad2:switch Smetana;Numpad3:switch PyJamaTank;Numpad4:switch FS.Corrupt;Numpad5:switch Chrusolika;Numpad6:switch Sickedwick;Numpad7:tp;Numpad8:itp;
-"@
-    $content | Out-File  $TerminalKeyBindingsConfigPath -Force
-    Start-Sleep 2
-    $content | Set-Content $TerminalKeyBindingsConfigPath
-    $TerminalKeyBindingsContent = Get-Content $TerminalKeyBindingsConfigPath -Raw
-}
-
-# Use regular expressions to find and replace the values
-$TerminalKeyBindingsContent = $TerminalKeyBindingsContent -replace '(?<=^\s*KeyMap\s*=\s*).*', 'KeyMap = Numpad0:scan;Numpad9:view monitor;Numpad1:switch Monstro;Numpad2:switch Smetana;Numpad3:switch PyJamaTank;Numpad4:switch FS.Corrupt;Numpad5:switch Chrusolika;Numpad6:switch Sickedwick;Numpad7:tp;Numpad8:itp;'
-
-# Write the modified content back to the file
-$TerminalKeyBindingsContent | Set-Content $TerminalKeyBindingsConfigPath
-
-# Check if the changes were successful
-$updatedTerminalKeyBindingsContent = Get-Content $TerminalKeyBindingsConfigPath -Raw
-$KeyMap = [regex]::Match($updatedTerminalKeyBindingsContent, '(?<=KeyMap = )\w+.*').Value
-$bindings = $KeyMap.split(';')
-if ($KeyMap -match 'Monstro') {
-    Write-Host "   Changes were successful. TerminalKeyBindings added..." -ForegroundColor Cyan
-    Write-Host "   Currently Enabled Bindings:"
-    Foreach ($bind in $bindings) {
-        if ($bind -match ':') {
-            $splitbind = $bind.split(':')
-            Write-Host "      $($splitbind[0])" -NoNewline -ForegroundColor Gray
-            Write-Host " -> $($splitbind[1])" -ForegroundColor Yellow
+    # Check if the changes were successful
+    $updatedTerminalKeyBindingsContent = Get-Content $TerminalKeyBindingsConfigPath -Raw
+    $KeyMap = [regex]::Match($updatedTerminalKeyBindingsContent, '(?<=KeyMap = )\w+.*').Value
+    $bindings = $KeyMap.split(';')
+    if ($KeyMap -match 'Monstro') {
+        Write-Host "   Changes were successful. TerminalKeyBindings added..." -ForegroundColor Cyan
+        Write-Host "   Currently Enabled Bindings:"
+        Foreach ($bind in $bindings) {
+            if ($bind -match ':') {
+                $splitbind = $bind.split(':')
+                Write-Host "      $($splitbind[0])" -NoNewline -ForegroundColor Gray
+                Write-Host " -> $($splitbind[1])" -ForegroundColor Yellow
+            }
         }
     }
-}
-else {
-    Write-Host "   Changes were not successful." -ForegroundColor Red
-}
-
-# More Emotes Config Part
-Write-Host "lets modify: " -NoNewline
-Write-Host "$MoreEmotesConfig" -ForegroundColor green
-
-# Read the content of the file
-if (Test-Path $MoreEmotesConfigPath) {
-    $MoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
-}
-Else {
-    $Content = @"
-## Settings file was created by plugin MoreEmotes-Sligili v1.2.2
-## Plugin GUID: MoreEmotes
-
-[EMOTE WHEEL]
-
-# Setting type: String
-# Default value: v
-Key = m
-
-[OTHERS]
-
-## Prevents some emotes from performing while holding any item/scrap
-# Setting type: Boolean
-# Default value: true
-InventoryCheck = true
-
-[QUICK EMOTES]
-
-# Setting type: String
-# Default value: 3
-Middle Finger = 3
-
-# Setting type: String
-# Default value: 6
-The Griddy = 6
-
-# Setting type: String
-# Default value: 5
-Shy = 5
-
-# Setting type: String
-# Default value: 4
-Clap = 4
-
-# Setting type: String
-# Default value: 7
-Twerk = 7
-
-# Setting type: String
-# Default value: 8
-Salute = 8
-"@
-    $content | Out-File  $MoreEmotesConfigPath -Force
-    Start-Sleep 2
-    $content | Set-Content $MoreEmotesConfigPath
-    $MoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
-}
-
-# Use regular expressions to find and replace the values
-$MoreEmotesContent = $MoreEmotesContent -replace '(?<=^\s*Key\s*=\s*)v', 'm'
-
-# Write the modified content back to the file
-$MoreEmotesContent | Set-Content $MoreEmotesConfigPath
-
-# Check if the changes were successful
-$updatedMoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
-$wheel = [regex]::Match($updatedMoreEmotesContent, '(?<=Key = )\w+').Value
-
-
-if ($wheel -eq 'm') {
-    Write-Host "   Changes were successful. key is now $wheel." -ForegroundColor Cyan
-}
-else {
-    Write-Host "   Changes were not successful." -ForegroundColor Red
-}
-
-try {
-    $Path = Get-ChildItem H: -Filter "BeepInEx" -ErrorAction SilentlyContinue
-    if ($Path) {
-        # Backup BepInEx directory
-        Write-Host "Backup Updated Directory..."
-        $BackupUpdatedParams = @{
-            Path            = $BepInEx.RootDirectory
-            DestinationPath = "{0}_Backup_Updated.zip" -f $BepInEx.RootDirectory
-        }
-        Write-Debug -Message ("Backup existing BepInEx directory to `"{0}`"." -f $BackupUpdatedParams.DestinationPath)
-        Compress-Archive @BackupUpdatedParams -Force
-        Copy-Item $BackupUpdatedParams.DestinationPath "H:\BeepInEx\BepInEx.zip" -Force -ErrorAction SilentlyContinue
-        Write-Host "   Backup copied to Google Drive..." -ForegroundColor Cyan
+    else {
+        Write-Host "   Changes were not successful." -ForegroundColor Red
     }
-}
-catch {
-    #nothing
-}
-<#
+
+    # More Emotes Config Part
+    Write-Host "lets modify: " -NoNewline
+    Write-Host "$MoreEmotesConfig" -ForegroundColor green
+
+    # Read the content of the file
+    if (Test-Path $MoreEmotesConfigPath) {
+        $MoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
+    }
+    Else {
+        $MoreEmotesContent = Invoke-WebRequest -Uri "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/$GitBranch/ModsConfigs/$MoreEmotesConfig" | Select-Object -ExpandProperty Content
+        $MoreEmotesContent | Out-File  $MoreEmotesConfigPath -Force
+        Start-Sleep 2
+        $MoreEmotesContent | Set-Content $MoreEmotesConfigPath
+        $MoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
+    }
+
+    # Use regular expressions to find and replace the values
+    $MoreEmotesContent = $MoreEmotesContent -replace '(?<=^\s*Key\s*=\s*)v', 'm'
+
+    # Write the modified content back to the file
+    $MoreEmotesContent | Set-Content $MoreEmotesConfigPath
+
+    # Check if the changes were successful
+    $updatedMoreEmotesContent = Get-Content $MoreEmotesConfigPath -Raw
+    $wheel = [regex]::Match($updatedMoreEmotesContent, '(?<=Key = )\w+').Value
+
+
+    if ($wheel -eq 'm') {
+        Write-Host "   Changes were successful. key is now $wheel." -ForegroundColor Cyan
+    }
+    else {
+        Write-Host "   Changes were not successful." -ForegroundColor Red
+    }
+
+    try {
+        $Path = Get-ChildItem H: -Filter "BeepInEx" -ErrorAction SilentlyContinue
+        if ($Path) {
+            # Backup BepInEx directory
+            Write-Host "Backup Updated Directory..."
+            $BackupUpdatedParams = @{
+                Path            = $BepInEx.RootDirectory
+                DestinationPath = "{0}_Backup_Updated.zip" -f $BepInEx.RootDirectory
+            }
+            Write-Debug -Message ("Backup existing BepInEx directory to `"{0}`"." -f $BackupUpdatedParams.DestinationPath)
+            Compress-Archive @BackupUpdatedParams -Force
+            Copy-Item $BackupUpdatedParams.DestinationPath "H:\BeepInEx\BepInEx.zip" -Force -ErrorAction SilentlyContinue
+            Write-Host "   Backup copied to Google Drive..." -ForegroundColor Cyan
+        }
+    }
+    catch {
+        #nothing
+    }
+    <#
     # Doom Part
     Write-Host "Starting setup of DOOM..." -ForegroundColor Cyan
 
@@ -613,5 +548,6 @@ catch {
 
     Write-Host "Setup of DOOM completed..." -ForegroundColor Cyan
 #>
+}
 Write-Host "`r`nGet back to work with your crewmates! No more excuses for not meeting the Company's profit quotas...`r`n" -ForegroundColor Green
 #endregion ----

@@ -32,7 +32,7 @@ To run ths script, follow these steps:
 2. Copy this _one-liner_ command in the console:
 
    ```powershell
-   Set-ExecutionPolicy Bypass -Scope Process -Force; $Script = "$env:TEMP\LethalCompanyModder.ps1";rm $Script -Force -ErrorAction SilentlyContinue; iwr "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/main/LethalCompanyModder.ps1" -OutFile $Script; & $Script
+   Set-ExecutionPolicy Bypass -Scope Process -Force; $Script = "$env:TEMP\LethalCompanyModder.ps1";rm $Script -Force -ErrorAction SilentlyContinue; iwr "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/main/LethalCompanyModder.ps1" -OutFile $Script; & $Script -CustomModConfig
    ```
 
 3. Execute it.
@@ -53,6 +53,14 @@ Install mods from a preset maintained by us on GitHub:
 
 ```powershell
 & .\LethalCompanyModder.ps1 -Preset "Default"
+```
+
+#### Modify a preset of mods
+
+Modify mods from a preset defined in script:
+
+```powershell
+& .\LethalCompanyModder.ps1 -CustomModConfig
 ```
 
 #### Install a preset of mods from file
