@@ -1,4 +1,6 @@
-![Icon](icon.png)
+<p align="center">
+  <img width="300" height="340" src="icon.png">
+</p>
 
 # LethalCompanyModder
 
