@@ -433,8 +433,8 @@ if ($CustomModConfig) {
         Foreach ($bind in $bindings) {
             if ($bind -match ':') {
                 $splitbind = $bind.split(':')
-                Write-Host "      $($splitbind[0])" -NoNewline -ForegroundColor Gray
-                Write-Host " -> $($splitbind[1])" -ForegroundColor Yellow
+                Write-Host "      $($splitbind[0]) -> " -NoNewline -ForegroundColor Gray
+                Write-Host "$($splitbind[1])" -ForegroundColor Yellow
             }
         }
     }
