@@ -37,15 +37,6 @@ To run ths script, follow these steps:
 
 3. Execute it.
 
-You also can create a Shortcut on Desktop:
-
-1. Open a Powershell console.
-2. Copy this _one-liner_ command in the console:
-
-  ```powershell
-  $powerShellCommand = 'Set-ExecutionPolicy Bypass -Scope Process -Force; $Script = "$env:TEMP\LethalCompanyModder.ps1"; rm $Script -Force -ErrorAction SilentlyContinue; iwr "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/main/LethalCompanyModder.ps1" -OutFile $Script; & $Script';$shortcutPath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath('Desktop'), 'RunLethalCompanyModder.lnk');$shell = New-Object -ComObject WScript.Shell;$shortcut = $shell.CreateShortcut($shortcutPath);$shortcut.TargetPath = 'powershell.exe';$shortcut.Arguments = "-NoProfile -ExecutionPolicy Bypass -Command `"$powerShellCommand`"";$shortcut.Description = 'Run LethalCompanyModder';$iconUrl = "https://raw.githubusercontent.com/fscorrupt/LethalCompanyModder/main/icon.ico";$shortcut.WorkingDirectory = $env:SystemRoot;$downloadedIconPath = [System.IO.Path]::Combine($env:TEMP, 'DownloadedIcon.ico');Invoke-WebRequest -Uri $iconUrl -OutFile $downloadedIconPath;$shortcut.IconLocation = "$downloadedIconPath,0";$shortcut.Save();
-  ```
-3. Execute it.
 It's as simple as that! 😄
 
 ### Advanced installation
