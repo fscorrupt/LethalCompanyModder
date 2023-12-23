@@ -2,7 +2,6 @@
   <img width="300" height="340" src="icon.png">
 </p>
 
-# LethalCompanyModder
 
 This PowerShell script installs a selection of mods for LethalCompany.
 
