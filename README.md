@@ -139,6 +139,8 @@ _This is the selection of mods to be installed when no curated or custom preset 
 - [TerminalKeyBindings](https://thunderstore.io/c/lethal-company/p/NavarroTech/TerminalKeyBindings/) by NavarroTech
 - [StockOverview](https://thunderstore.io/c/lethal-company/p/squall4120/StockOverview/) by [squall4120](https://github.com/Squall4120)
 - [MoreTerminalCommands](https://thunderstore.io/c/lethal-company/p/NavarroTech/MoreTerminalCommands/) by NavarroTech
+- [IwotasticsCompassMod](https://thunderstore.io/c/lethal-company/p/iwotastic/IwotasticsCompassMod/) by [NavarroTech](https://github.com/iwotastic)
+- [LethalProgression](https://thunderstore.io/c/lethal-company/p/Stoneman/LethalProgression/) by [NavarroTech](https://github.com/stoneman2)
 
 ## Check your files
 

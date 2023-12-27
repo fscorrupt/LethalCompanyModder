@@ -28,10 +28,32 @@
       "TerminalKeyBindings",
       "StockOverview",
       "MoreTerminalCommands",
+      "LethalProgression",
+      "IwotasticsCompassMod",
       "AlwaysHearActiveWalkies"
     ]
   },
   "Mods": [
+    {
+      "Name": "LethalProgression",
+      "DisplayName": "LethalProgression",
+      "Description": "Leveling and skillpoints!",
+      "Provider": "Thunderstore",
+      "Namespace": "Stoneman",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
+    {
+      "Name": "IwotasticsCompassMod",
+      "DisplayName": "IwotasticsCompassMod",
+      "Description": "A mod for Lethal Company that just adds a compass to the top of the screen.",
+      "Provider": "Thunderstore",
+      "Namespace": "iwotastic",
+      "Type": "BepInExPlugin",
+      "ExtraIncludes": [],
+      "ServerHostOnly": false
+    },
     {
       "Name": "MoreTerminalCommands",
       "DisplayName": "MoreTerminalCommands",
@@ -41,7 +63,7 @@
       "Type": "BepInExPlugin",
       "ExtraIncludes": [],
       "ServerHostOnly": false
-    },     
+    },
     {
       "Name": "StockOverview",
       "DisplayName": "StockOverview",
@@ -51,7 +73,7 @@
       "Type": "BepInExPlugin",
       "ExtraIncludes": [],
       "ServerHostOnly": false
-    },    
+    },
     {
       "Name": "TerminalKeyBindings",
       "DisplayName": "TerminalKeyBindings",
